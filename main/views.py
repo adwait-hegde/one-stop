@@ -254,11 +254,13 @@ def new_referral(request):
         company_name = request.POST.get("company_name")
         position = request.POST.get("position")
         job_id = request.POST.get("job_id")
+        link = request.POST.get("link")
         newReferral = Referral.objects.create(
             company_name=company_name,
             posted_by=request.user,
             position=position,
             job_id=job_id,
+            link=link,
             date_posted=datetime.datetime.now(),
         )
         newReferral.save()
@@ -303,29 +305,35 @@ def send_mail(subject, html_template, user, context):
     html_message = render_to_string(html_template, context)
     message = EmailMessage(subject, html_message, from_email, [to_email])
     message.content_subtype = "html"
-    message.send()
+    try:
+        message.send()
+    except:
+        pass
 
-    url = "https://email-sender1.p.rapidapi.com/"
-    querystring = {
-        "txt_msg": "test of the body",
-        "to": user.email,
-        "from": "one-stop",
-        "subject": subject,
-        "html_msg": html_message,
-    }
+    try:
+        url = "https://email-sender1.p.rapidapi.com/"
+        querystring = {
+            "txt_msg": "test of the body",
+            "to": user.email,
+            "from": "one-stop",
+            "subject": subject,
+            "html_msg": html_message,
+        }
 
-    payload = '{\r\n    "key1": "value",\r\n    "key2": "value"\r\n}'
-    headers = {
-        "content-type": "application/json",
-        "x-rapidapi-host": "email-sender1.p.rapidapi.com",
-        "x-rapidapi-key": "b5270f85e6mshe7e8deadf438372p19932ejsn5d3cedb41a34",
-    }
+        payload = '{\r\n    "key1": "value",\r\n    "key2": "value"\r\n}'
+        headers = {
+            "content-type": "application/json",
+            "x-rapidapi-host": "email-sender1.p.rapidapi.com",
+            "x-rapidapi-key": "b5270f85e6mshe7e8deadf438372p19932ejsn5d3cedb41a34",
+        }
 
-    response = requests.request(
-        "POST", url, data=payload, headers=headers, params=querystring
-    )
+        response = requests.request(
+            "POST", url, data=payload, headers=headers, params=querystring
+        )
 
-    print(response.text)
+        print(response.text)
+    except:
+        pass
 
 
 def confirm_referral(request, pk):
