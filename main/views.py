@@ -310,30 +310,40 @@ def send_mail(subject, html_template, user, context):
     except:
         pass
 
-    try:
-        url = "https://email-sender1.p.rapidapi.com/"
-        querystring = {
-            "txt_msg": "test of the body",
-            "to": user.email,
-            "from": "one-stop",
-            "subject": subject,
-            "html_msg": html_message,
-        }
 
-        payload = '{\r\n    "key1": "value",\r\n    "key2": "value"\r\n}'
-        headers = {
-            "content-type": "application/json",
-            "x-rapidapi-host": "email-sender1.p.rapidapi.com",
-            "x-rapidapi-key": "b5270f85e6mshe7e8deadf438372p19932ejsn5d3cedb41a34",
-        }
+    url = "https://email-sender1.p.rapidapi.com/"
+    querystring = {
+        "txt_msg": 
 
-        response = requests.request(
-            "POST", url, data=payload, headers=headers, params=querystring
-        )
+'''Congratulations!
 
-        print(response.text)
-    except:
-        pass
+You have received one referral at "'''+ context["company_name"] +'''" for "'''+ context["position"] +'''" (JobId:'''+ context["job_id"] +''')
+
+Message from giver: 
+
+'''+context["msg"]+'''
+
+You got this referral from '''+ context['giver'].username + ''' (EmailId: '''+ context["giver"].email+''')''',
+        "to": user.email,
+        "from": "one-stop",
+        "subject": subject,
+    }
+
+    payload = '{\r\n    "key1": "value",\r\n    "key2": "value"\r\n}'
+    headers = {
+        "content-type": "application/json",
+        "x-rapidapi-host": "email-sender1.p.rapidapi.com",
+        "x-rapidapi-key": "b5270f85e6mshe7e8deadf438372p19932ejsn5d3cedb41a34",
+    }
+
+    response = requests.request(
+        "POST", url, data=payload, headers=headers, params=querystring
+    )
+
+    print(response.text)
+
+    # except:
+    #     pass
 
 
 def confirm_referral(request, pk):
@@ -341,17 +351,21 @@ def confirm_referral(request, pk):
         message = request.POST.get("r_message")
 
         curr_referral = Referral.objects.get(pk=pk)
+        print(curr_referral)
+        print(curr_referral.company_name)
+        print(curr_referral.position)
 
         # Send mail
         send_mail(
             subject="Congrats, Referral Recieved!",
             html_template="main/mail_referral.html",
             user=curr_referral.posted_by,
-            context={"msg": message, "ref": curr_referral, "giver": request.user},
+            context={"msg": message, "ref": curr_referral, "giver": request.user, "company_name":curr_referral.company_name, "position":curr_referral.position, "job_id":curr_referral.job_id}
         )
         # send to: posted_by
         # sender: we
         # referral giver: current user
+
         curr_referral.status = True
         curr_referral.save()
 

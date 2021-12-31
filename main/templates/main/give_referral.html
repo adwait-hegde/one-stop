@@ -29,7 +29,7 @@
 
                         <p class="excerpt">Position: {{ referral.position }}</p>
                         <p class="excerpt">Job ID: {{ referral.job_id }}</p>
-                        <p class="excerpt">Resume: {{ referral.link }}</p>
+                        <p class="excerpt">Resume: <a href="{{ referral.link }}">Link</a></p>
                         
                         <form action="{% url 'confirm_referral' referral.id %}" method="POST">
 				            {% csrf_token %}
