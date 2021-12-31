@@ -36,10 +36,6 @@
 
 </head>
 
-<style>
-	.foobar {}
-</style>
-
 <body>
 
 	<!--PreLoader-->
@@ -70,19 +66,19 @@
 								<li class="current-list-item"><a href="{% url 'home-page' %}">Home</a>
 								</li>
 
-								<li><a href="{% url 'Questions-list-view' %}">Question</a>
+								<li><a>Question</a>
 									<ul class="sub-menu">
 										<li><a href="{% url 'new_question' %}">Post Question</a></li>
 										<li><a href="{% url 'Questions-list-view' %}">View Questions</a></li>
 									</ul>
 								</li>
-								<li><a href="#">Referral</a>
+								<li><a>Referral</a>
 									<ul class="sub-menu">
 										<li><a href="{% url 'new_referral' %}">Ask for Referral</a></li>
 										<li><a href="{% url 'give_referral' %}">Give Referral</a></li>
 									</ul>
 								</li>
-								<li><a href="{% url 'jobs' %}">Hiring alert</a>
+								<li><a>Hiring alert</a>
 									<ul class="sub-menu">
 										<li><a href="{% url 'jobs' %}">Jobs</a></li>
 										<li><a href="{% url 'new_job' %}">Post Jobs</a></li>
@@ -92,10 +88,9 @@
 								</li>
 
 								{% if user.is_authenticated %}
-								<li><a href="{% url 'Student-question-list' user.id %}">Your Profile</a>
+								<li><a>Your Profile</a>
 									<ul class="sub-menu">
-										<li><a href="{% url 'Student-question-list' user.id %}">Questions you asked</a>
-										</li>
+										<li><a href="{% url 'Student-question-list' user.id %}">Questions you asked</a></li>
 										<li><a href="{% url 'Student-answer-list' user.id %}">Your answers</a></li>
 									</ul>
 								</li>
