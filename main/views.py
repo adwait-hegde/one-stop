@@ -45,6 +45,7 @@ class QuestionListView(ListView):
     # <app>/<model>_<viewtype>.html
     context_object_name = "Question"
     ordering = ["-date_posted"]
+    template_name = 'main/Question_list.html'
 
 
 def QuestionDetailView(request, pk):
