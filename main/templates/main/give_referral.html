@@ -1,0 +1,48 @@
+{% extends "main/base.html" %} {% block content%}
+
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <h1>Requested Referrals</h1>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="latest-news mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            {% for referral in referrals %}
+            <div class="col-lg-4 col-md-6">
+                <div class="single-latest-news">
+                    <div class="news-text-box">
+                        <h3>{{ referral.company_name }}</h3>
+                        <p class="blog-meta">
+                            <span class="author"><i class="fas fa-user"></i>{{ referral.posted_by }}</span>
+                            <span class="date"><i class="fas fa-calendar"></i>
+                                {{referral.date_posted}}</span>
+                        </p>
+
+                        <p class="excerpt">Position: {{ referral.position }}</p>
+                        <p class="excerpt">Job ID: {{ referral.job_id }}</p>
+                        <p class="excerpt">Resume: {{ referral.link }}</p>
+                        
+                        <form action="{% url 'confirm_referral' referral.id %}" method="POST">
+				            {% csrf_token %}
+                            <p><textarea name="r_message" id="r_message" cols="30" rows="5" placeholder="Your Message"></textarea></p>
+
+                            <p><input class="boxed-btn black" type="submit" value="Referral this"></p>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content%}

@@ -1,0 +1,43 @@
+{% extends "main/base.html" %} {% block content%}
+
+<div class="breadcrumb-section breadcrumb-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="breadcrumb-text">
+          <h1>Ask Question</h1>
+          <br />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  id="collapseOne"
+  class="collapse show"
+  aria-labelledby="headingOne"
+  data-parent="#accordionExample"
+>
+  <div class="card-body">
+    <div class="billing-address-form">
+      {% for message in messages %}
+      <div class="alert alert-secondary" role="alert">{{message}}</div>
+      {% endfor %}
+
+      <form action="{% url 'new_question' %}" method="POST">
+        {% csrf_token %}
+        Question Title<br>
+        <p><input name="question_title" id="question_title"  type="text" placeholder="Your Question title"></p>
+        Description<br>
+        <p><textarea name="question_description" id="question_description" cols="30" rows="10" placeholder="Your Question description"></textarea></p>
+
+        <p><input type="submit" value="Submit"></p>
+    </form>
+
+    
+    </div>
+  </div>
+</div>
+
+{% endblock content%}

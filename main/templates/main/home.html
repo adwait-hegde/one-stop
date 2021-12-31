@@ -1,0 +1,142 @@
+{% extends "main/base.html" %} 
+{% load static %}
+
+{% block content%}
+<!-- hero area -->
+	<div class="hero-area hero-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-9 offset-lg-2 text-center">
+					<div class="hero-text">
+						<div class="hero-text-tablecell">
+
+							{% if user.is_authenticated %}
+							<p class="subtitle">Hello, {{user.username}}</p>
+							{% endif %}
+
+							<h1>Student Portal</h1>
+							{% if user.is_authenticated %}
+							<div class="hero-btns">
+								<a href="{% url 'Student-question-list' user.id %}" class="boxed-btn">Your Profile</a>
+								<a href="{% url 'logout' %}" class="bordered-btn">Logout</a>
+							</div>
+
+							{% else %}
+							<div class="hero-btns">
+								<a href="{% url 'login' %}" class="boxed-btn">Login</a>
+								<a href="{% url 'register' %}" class="bordered-btn">Register</a>
+							</div>
+
+							{% endif %}
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end hero area -->
+
+
+	<!-- <div class="list-section pt-80 pb-80">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+					<div class="list-box d-flex align-items-center">
+						<div class="list-icon">
+							<i class="fas fa-shipping-fast"></i>
+						</div>
+						<div class="content">
+							<h3>Free Shipping</h3>
+							<p>When order over $75</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+					<div class="list-box d-flex align-items-center">
+						<div class="list-icon">
+							<i class="fas fa-phone-volume"></i>
+						</div>
+						<div class="content">
+							<h3>24/7 Support</h3>
+							<p>Get support all day</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="list-box d-flex justify-content-start align-items-center">
+						<div class="list-icon">
+							<i class="fas fa-sync"></i>
+						</div>
+						<div class="content">
+							<h3>Refund</h3>
+							<p>Get refund within 3 days!</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div> -->
+	<!-- end features list section -->
+
+
+	<!-- end cart banner section -->
+
+	<!-- testimonail-section -->
+	<div class="testimonail-section mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10 offset-lg-1 text-center">
+					<div class="testimonial-sliders">
+						<div class="single-testimonial-slider">
+							<div class="client-avater">
+								<img src="{% static 'main/img/avaters/avatar1.png' %}" alt="">
+							</div>
+							<div class="client-meta">
+								<h3>Soham Belurgikar<span>SPIT '23</span></h3>
+								<p class="testimonial-body">
+									This platform helped to land my dream job
+								</p>
+								<div class="last-icon">
+									<i class="fas fa-quote-right"></i>
+								</div>
+							</div>
+						</div>
+						<div class="single-testimonial-slider">
+							<div class="client-avater">
+								<img src="{% static 'main/img/avaters/avatar2.png' %}" alt="">
+							</div>
+							<div class="client-meta">
+								<h3>Divesh Choudhari <span>DJSCE '22</span></h3>
+								<p class="testimonial-body">
+									"Got a referral for my internship! "
+								</p>
+								<div class="last-icon">
+									<i class="fas fa-quote-right"></i>
+								</div>
+							</div>
+						</div>
+						<div class="single-testimonial-slider">
+							<div class="client-avater">
+								<img src="{% static 'main/img/avaters/avatar3.png' %}" alt="">
+							</div>
+							<div class="client-meta">
+								<h3>Yash Jagtap<span>VJTI '22</span></h3>
+								<p class="testimonial-body">
+									This platform helped me make good projects and got my doubts solved from fellow colleagues
+								</p>
+								<div class="last-icon">
+									<i class="fas fa-quote-right"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end testimonail-section -->
+
+{% endblock content%}

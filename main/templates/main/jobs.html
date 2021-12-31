@@ -1,0 +1,43 @@
+{% extends "main/base.html" %} {% block content%}
+
+<div class="breadcrumb-section breadcrumb-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="breadcrumb-text">
+          <h1>All Jobs</h1>
+          <br />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="latest-news mt-150 mb-150">
+  <div class="container">
+    <div class="row">
+      {% for job in jobs %}
+      <div class="col-lg-4 col-md-6">
+        <div class="single-latest-news">
+          <div class="news-text-box">
+            <h3>{{ job.company_name }}</h3>
+            <p class="blog-meta">
+              <span class="author"
+                ><i class="fas fa-user"></i>{{ job.author }}</span
+              >
+              <span class="date"
+                ><i class="fas fa-calendar"></i>{{ job.date_posted }}</span
+              >
+            </p>
+            <p class="excerpt">Position: {{ job.position }}</p>
+            <a class="read-more-btn" href="{{job.link}}" target="_blank">
+              Application Form<i class="fas fa-angle-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock content%}

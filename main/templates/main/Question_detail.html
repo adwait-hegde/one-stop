@@ -1,0 +1,102 @@
+{% extends "main/base.html" %} {% block content%}
+
+
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Read the Details</p>
+                    <h1>Answers</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="single-article-section">
+                    <div class="single-article-text">
+                        <p class="blog-meta">
+                            <span class="author"><i class="fas fa-user"></i> {{question.student.username}}</span>
+                            <span class="date"><i class="fas fa-calendar"></i>{{question.date_posted}}</span>
+                        </p>
+                    </div>
+                    <h2>
+                        {{question.title}}
+                    </h2>
+                    <p>
+                        {{question.description}}
+                        
+                    </p>
+                    <div class="comments-list-wrap">
+
+
+                        <!-- HERE HERE HERE -->
+
+                        <h3 class="comment-count-title">{{answers.count}} Answers</h3>
+                        <div class="comment-list">
+                            
+                            {%for ans in answers%}
+
+                            
+                            <div class="single-comment-body">
+                                
+                                
+                                <div class="comment-user-avater">
+                                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                                    alt="">
+                                </div>
+                                
+                                <div class="comment-text-body">
+                                    <h4>{{ans.student.username}} <span class="comment-date"></span></h4>
+                                    <p>{{ans.description}}</p>
+                                </div>
+                                
+                            </div>
+                            {%endfor%}
+
+                            
+                        </div>
+                    </div>
+
+                    <div class="comment-template">
+                        <h4>Share your answer</h4>
+                        <p>If you have a answer dont feel hesitate to write your opinion</p>
+                        
+                        <form action="{% url 'answers' question.pk %}" method="POST">
+				            {% csrf_token %}
+                            <p><textarea name="answer" id="answer" cols="30" rows="10"
+                                    placeholder="Your Message"></textarea></p>
+
+                            <p><input type="submit" value="Submit"></p>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="sidebar-section">
+                    <div class="tag-section">
+                        <h4>Tags</h4>
+                        <ul>
+                            <li><a>Computer science </a></li>
+                            <!-- <li><a href="single-news.html">Strawberry</a></li> -->
+                            <!-- <li><a href="single-news.html">BErry</a></li> -->
+                            <!-- <li><a href="single-news.html">Orange</a></li> -->
+                            <!-- <li><a href="single-news.html">Lemon</a></li> -->
+                            <li><a>Programming</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content%}
+

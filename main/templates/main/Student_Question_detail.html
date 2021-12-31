@@ -1,0 +1,10 @@
+{% extends "main/base.html" %}
+{% block content%}
+<h4>this is the student</h4>
+<li>this is the student name {{student}}</li>
+
+<h4>these are the questions</h4>
+{%for question in questions%}
+<li>{{question.title}}</li>
+{%endfor%}
+{% endblock content%}

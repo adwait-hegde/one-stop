@@ -1,0 +1,111 @@
+{% extends "main/base.html" %} {% block content%}
+
+<div class="breadcrumb-section breadcrumb-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="breadcrumb-text">
+          <h1>Search Results</h1>
+          <p>{{ number_questions_found }} matches</p>
+          <br />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="latest-news mt-150 mb-150">
+  <div class="container">
+    <h1>Job</h1>
+    {% if jobs %}
+    <div class="row">
+      {% for job in jobs %}
+      <div class="col-lg-4 col-md-6">
+        <div class="single-latest-news">
+          <div class="news-text-box">
+            <h3>{{ job.company_name }}</h3>
+            <p class="blog-meta">
+              <span class="author"><i class="fas fa-user"></i>{{ job.author }}</span>
+              <span class="date"><i class="fas fa-calendar"></i>{{ job.date_posted }}</span>
+            </p>
+            <p class="excerpt">Position: {{ job.position }}</p>
+            <a class="read-more-btn" href="{{job.link}}" target="_blank">
+              Application Form<i class="fas fa-angle-right"></i></a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p>No jobs found</p>
+
+    {% endif %}
+  </div>
+</div>
+
+<div class="latest-news mt-150 mb-150">
+  <div class="container">
+    <h1>Internship</h1>
+    {% if internships %}
+    <div class="row">
+      {% for internship in internships %}
+      <div class="col-lg-4 col-md-6">
+        <div class="single-latest-news">
+          <div class="news-text-box">
+            <h3>{{ internship.company_name }}</h3>
+            <p class="blog-meta">
+              <span class="author"><i class="fas fa-user"></i>{{ internship.author }}</span>
+              <span class="date"><i class="fas fa-calendar"></i>
+                {{internship.date_posted}}</span>
+            </p>
+            <p class="excerpt">Position: {{ internship.position }}</p>
+            <p class="excerpt">Stipend: {{ internship.stipend }}/month</p>
+            <p class="excerpt">Duration: {{ internship.duration }} months</p>
+            <a class="read-more-btn" href="{{internship.link}}" target="_blank">
+              Application Form<i class="fas fa-angle-right"></i></a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p>No internships found</p>
+    {% endif %}
+  </div>
+</div>
+
+
+
+<div class="latest-news mt-150 mb-150">
+  <div class="container">
+    <h1>Questions</h1>
+    {% if questions %}
+    <div class="row">
+      {% for question in questions %}
+      <div class="col-lg-4 col-md-6">
+        <div class="single-latest-news">
+          <div class="news-text-box">
+            <h3>{{ question.title }}</h3>
+            <p class="blog-meta">
+              <span class="author"><i class="fas fa-user"></i>{{ question.student.username }}</span>
+              <span class="date"><i class="fas fa-calendar"></i>
+                {{question.date_posted}}</span>
+            </p>
+
+            <p class="excerpt"> {{ question.description }}</p>
+
+            <a href="{%url 'Questions-detail' question.pk %}" class="read-more-btn">View Answers <i
+                class="fas fa-angle-right"></i></a>
+
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p>No questions found</p>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock content%}

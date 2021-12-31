@@ -1,0 +1,58 @@
+{% extends "main/base.html" %}
+{% block content%}
+
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Hello</p>
+                    <h1>{{ user.username }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="contact-from-section mt-150 mb-150">
+    <div class="container">
+            <div class="col-lg-8 mb-5 mb-lg-0">
+                <div class="comments-list-wrap">
+
+
+                    <!-- HERE HERE HERE -->
+                    <h3 class="comment-count-title">{{ answers.count }} Answers</h3>
+                    <div class="comment-list">
+                        
+                        {%for ans in answers%}
+
+                        
+                        <div class="single-comment-body">
+                            
+                            
+                            <div class="comment-user-avater">
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                                alt="">
+                            </div>
+                            <div class="comment-text-body">
+                                <a href="{%url 'Questions-detail' ans.question.id %}" >
+                                    <h4>{{ans.question.title}}  <span class="comment-date"></span></h4>
+                                </a> 
+                                <p>{{ans.description}}</p>
+                            </div>
+                            
+                        </div>
+                        {%endfor%}
+
+                        
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+</div>
+
+
+
+{% endblock content%}

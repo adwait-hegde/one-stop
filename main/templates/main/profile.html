@@ -1,0 +1,61 @@
+{% extends "main/base.html" %}
+{% block content%}
+
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Hello</p>
+                    <h1>{{ user.username }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="contact-from-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mb-5 mb-lg-0">
+                <div class="form-title">
+                    <h2>Your Questions</h2>
+                </div>
+
+
+                {% for cur_quest in questions %}
+
+                <div class="latest-news mb-150">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6">
+                                <div class="single-latest-news">
+                                    <div class="news-text-box">
+                                        <h3><a href="{%url 'Questions-detail' cur_quest.pk %}">{{cur_quest.title}}</a>
+                                        </h3>
+                                        <p class="blog-meta">
+                                            <span class="author"><i
+                                                    class="fas fa-user"></i>{{cur_quest.student.username}}</span>
+                                            <span class="date"><i
+                                                    class="fas fa-calendar"></i>{{cur_quest.date_posted}}</span>
+                                        </p>
+                                        <p class="excerpt">{{cur_quest.description}}</p>
+                                        <a href="{%url 'Questions-detail' cur_quest.pk %}" class="read-more-btn">view
+                                            answers <i class="fas fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content%}

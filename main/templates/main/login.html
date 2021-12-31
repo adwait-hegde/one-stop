@@ -1,0 +1,40 @@
+{% extends "main/base.html" %}
+{% block content%}
+
+<div class="breadcrumb-section breadcrumb-bg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 offset-lg-2 text-center">
+				<div class="breadcrumb-text">
+					<p>Student</p>
+					<h1>Log In</h1><br>
+					<p><a href="{% url 'register' %}">Register</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+	<div class="card-body">
+		<div class="billing-address-form">
+			{% for message in messages %}
+			<div class="alert alert-secondary" role="alert">
+				{{message}}
+			</div>
+			{% endfor %}
+
+			<form method="post" action="{% url 'login' %}">
+				{% csrf_token %}
+				Username<br>
+				<p><input name="username" type="text" placeholder="Username"></p>
+				Password<br>
+				<p><input name="password" type="password" placeholder="Password"></p>
+				<p><input class="boxed-btn black" type="submit" value="Log In"></p>
+
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock content%}
